@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "API+Front",
+    "Projects": [
+      {
+        "Path": "Invoicer.Api\\Invoicer.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "Invoicer.Front\\Invoicer.Front.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]
