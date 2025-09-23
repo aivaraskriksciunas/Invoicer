@@ -1,38 +1,38 @@
 ﻿using Invoicer.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace Invoicer.Api.Common.Repositories;
+namespace Invoicer.Api.Common.EntityServices;
 
 public abstract class BaseEntityService<TEntity, TKey> : IEntityService<TEntity, TKey> where TEntity : class
 {
-    private readonly InvoicerContext _db;
+    protected readonly InvoicerContext db;
 
     public BaseEntityService( InvoicerContext context ) 
     {
-        _db = context;
+        db = context;
     }
 
     public async Task<List<TEntity>> List()
     {
-        return await _db.Set<TEntity>().ToListAsync();
+        return await db.Set<TEntity>().ToListAsync();
     }
 
-    public async Task<TEntity> Create( TEntity entity )
+    public async Task<TEntity> Add( TEntity entity )
     {
-        await _db.Set<TEntity>().AddAsync( entity );
-        await _db.SaveChangesAsync();
+        await db.Set<TEntity>().AddAsync( entity );
+        await db.SaveChangesAsync();
 
         return entity;
     }
 
-    public async Task Delete( TEntity entity )
+    public async Task Remove( TEntity entity )
     {
-        _db.Set<TEntity>().Remove( entity );
-        await _db.SaveChangesAsync();
+        db.Set<TEntity>().Remove( entity );
+        await db.SaveChangesAsync();
     }
 
     public async Task<TEntity?> Find( TKey key )
     {
-        return await _db.Set<TEntity>().FindAsync( key );
+        return await db.Set<TEntity>().FindAsync( key );
     }
 }
