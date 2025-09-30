@@ -15,6 +15,15 @@ builder.Services.AddApplicationServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Cors
+builder.Services.AddCors( options =>
+{
+    options.AddPolicy( "AllowBlazor",
+        policy => policy.WithOrigins( "https://localhost:7044" )
+                        .AllowAnyHeader()
+                        .AllowAnyMethod() );
+} );
+
 var app = builder.Build();
 
 // Setup dev tools
@@ -31,6 +40,7 @@ using (var scope = app.Services.CreateScope())
     DbInitializer.Initialize( services.GetRequiredService<InvoicerContext>() );
 }
 
+app.UseCors( "AllowBlazor" );
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

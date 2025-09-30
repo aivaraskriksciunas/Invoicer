@@ -1,0 +1,19 @@
+{
+  "name": "invoicer.front",
+  "version": "1.0.0",
+  "scripts": {
+    "watch": "parcel watch wwwsrc/index.scss wwwsrc/index.js --dist-dir wwwroot",
+    "build": "parcel build wwwsrc/index.scss wwwsrc/index.js --dist-dir wwwroot"
+  },
+  "author": "Aivaras Kriksciunas",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.16.0",
+    "parcel": "^2.16.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8"
+  }
+}

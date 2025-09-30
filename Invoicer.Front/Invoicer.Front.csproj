@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwsrc\scss\" />
+    <Folder Include="wwwsrc\js\" />
   </ItemGroup>
 
 </Project>

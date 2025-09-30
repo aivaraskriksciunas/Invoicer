@@ -1,0 +1,32 @@
+﻿@inject ILogger<ProjectModel> Logger
+@inject ProjectService ProjectService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<EditForm Model="Model" OnValidSubmit="OnSubmit" FormName="ProjectForm">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="form-group">
+        <label class="form-label">Name of the project:</label>
+        <InputText @bind-Value="Model!.Name" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private ProjectModel? Model { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Model ??= new();
+    }
+
+    private async Task OnSubmit()
+    {
+        await ProjectService.PostAsync( Model! );
+        NavigationManager.NavigateTo( "/projects" );
+    }
+}
