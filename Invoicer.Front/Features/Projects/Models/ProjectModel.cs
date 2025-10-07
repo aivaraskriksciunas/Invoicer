@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Invoicer.Front.App.Projects.Models;
+namespace Invoicer.Front.Features.Projects.Models;
 
 public class ProjectModel
 {
-    public int? Id { get; }
+    public int? Id { get; set; }
 
     [Required]
-    [MaxLength(100)]
-    [MinLength(3)]
+    [MaxLength( 100 )]
+    [MinLength( 3 )]
     public string? Name { get; set; }
 }

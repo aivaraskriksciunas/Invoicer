@@ -363,3 +363,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 db_data
+/Invoicer.Front/.parcel-cache
+/Invoicer.Front/wwwroot/index.css
+/Invoicer.Front/wwwroot/index.css.map
+/Invoicer.Front/wwwroot/index.js
+/Invoicer.Front/wwwroot/index.js.map

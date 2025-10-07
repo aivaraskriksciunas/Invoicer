@@ -1,13 +1,9 @@
 #page-wrapper {
     position: relative;
     height: 100vh;
+    background-color: var(--bs-body-bg);
 }
 
 #page-wrapper main {
     overflow: scroll;
-}
-
-#page-wrapper .sidebar {
-    overflow: scroll;
-    height: 100%;
 }

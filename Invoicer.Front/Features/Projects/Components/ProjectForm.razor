@@ -1,12 +1,12 @@
 ﻿@inject ILogger<ProjectModel> Logger
 @inject ProjectService ProjectService
 @inject NavigationManager NavigationManager
-@rendermode InteractiveServer
+@* @rendermode InteractiveServer *@
 
 <EditForm Model="Model" OnValidSubmit="OnSubmit" FormName="ProjectForm">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
-    <div class="form-group">
+    <div class="form-group mb-2">
         <label class="form-label">Name of the project:</label>
         <InputText @bind-Value="Model!.Name" class="form-control"></InputText>
     </div>
@@ -16,8 +16,8 @@
 </EditForm>
 
 @code {
-    [SupplyParameterFromForm]
-    private ProjectModel? Model { get; set; }
+    [Parameter]
+    public ProjectModel? Model { get; set; }
 
     protected override void OnInitialized()
     {

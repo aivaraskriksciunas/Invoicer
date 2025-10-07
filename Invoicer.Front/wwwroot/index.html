@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InvoicerTest</title>
+    <base href="/" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="Invoicer.Front.styles.css" />
+
+    <script type="text/javascript" src="index.js"></script>
+
+    <style>
+        .loader {
+            width: 20px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: #000;
+            box-shadow: 0 0 0 0 #0004;
+            animation: l1 1s infinite;
+            margin: 50px;
+        }
+
+        @keyframes l1 {
+            100% {
+                box-shadow: 0 0 0 30px #0000
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="loader"></div>
+    </div>
+
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

@@ -1,9 +1,10 @@
 ﻿@page "/projects"
+@using Invoicer.Front.Components.EntityCard
 @inject ProjectService ProjectService
 
 <PageTitle>Projects</PageTitle>
 
-<h1>List of projects</h1>
+<h1 class="mb-3">List of projects</h1>
 
 @if ( projects is null )
 {
@@ -11,12 +12,16 @@
 }
 else
 {
-    <ul>
+    <div>
         @foreach ( var project in projects )
         {
-            <li>@project.Name</li>
+            <EntityCard class="mb-2">
+                <NavLink href="@($"/projects/{project.Id}")">
+                    @project.Name
+                </NavLink>
+            </EntityCard>
         }
-    </ul>
+    </div>
 }
 
 @code {

@@ -1,0 +1,34 @@
+﻿@page "/projects/{Id:int}"
+@inject ProjectService ProjectService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit project</PageTitle>
+
+@if (Project == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <h2>Editing project @Project.Name</h2>
+
+    <ProjectForm Model="@Project"></ProjectForm>
+}
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    public ProjectModel? Project { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Project = await ProjectService.GetAsync( Id );
+
+        if ( Project == null )
+        {
+            NavigationManager.NavigateTo( "404" );
+        }
+    }
+}

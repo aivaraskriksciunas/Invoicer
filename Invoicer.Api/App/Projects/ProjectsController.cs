@@ -20,6 +20,18 @@ public class ProjectsController : BaseController
         return await service.List();
     }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Project>> Get( [FromRoute] int id )
+    {
+        var project = await service.Find( id );
+        if (project == null)
+        {
+            return NotFound();
+        }
+
+        return Ok( project );
+    }
+
     [HttpPost]
     public async Task<ActionResult<Project>> Create( [FromBody]ProjectDto project )
     {
