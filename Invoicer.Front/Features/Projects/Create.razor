@@ -1,11 +1,18 @@
 ﻿@page "/projects/new"
+@inject ProjectService ProjectService
+@inject NavigationManager NavigationManager
 
 <PageTitle>New project</PageTitle>
 
 <h3>Create</h3>
 
-<ProjectForm></ProjectForm>
+<ProjectForm OnSubmit="OnSubmit"></ProjectForm>
 
 @code {
 
+    public async Task OnSubmit( ProjectModel model )
+    {
+        await ProjectService.PostAsync( model );
+        NavigationManager.NavigateTo( "/projects" );
+    }
 }

@@ -4,7 +4,7 @@ namespace Invoicer.Front.Features.Projects.Models;
 
 public class ProjectModel
 {
-    public int? Id { get; set; }
+    public Guid? Id { get; set; }
 
     [Required]
     [MaxLength( 100 )]

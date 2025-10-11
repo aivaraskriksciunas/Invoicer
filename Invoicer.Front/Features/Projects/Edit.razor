@@ -1,4 +1,4 @@
-﻿@page "/projects/{Id:int}"
+﻿@page "/projects/{Id:guid}"
 @inject ProjectService ProjectService
 @inject NavigationManager NavigationManager
 
@@ -12,23 +12,34 @@ else
 {
     <h2>Editing project @Project.Name</h2>
 
-    <ProjectForm Model="@Project"></ProjectForm>
+    <ProjectForm Model="@Project" OnSubmit="OnSubmit"></ProjectForm>
 }
 
 
 @code {
     [Parameter]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     public ProjectModel? Project { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Project = await ProjectService.GetAsync( Id );
-
-        if ( Project == null )
+        try
         {
-            NavigationManager.NavigateTo( "404" );
+            Project = await ProjectService.GetAsync( Id );
         }
+        catch (HttpRequestException ex)
+        {
+            if (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                NavigationManager.NavigateTo( "404" );
+            }
+        }
+    }
+
+    public async Task OnSubmit( ProjectModel model )
+    {
+        await ProjectService.PutAsync( model );
+        NavigationManager.NavigateTo( "/projects" );
     }
 }

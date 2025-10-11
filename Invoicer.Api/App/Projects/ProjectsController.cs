@@ -21,7 +21,7 @@ public class ProjectsController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Project>> Get( [FromRoute] int id )
+    public async Task<ActionResult<Project>> Get( [FromRoute] Guid id )
     {
         var project = await service.Find( id );
         if (project == null)
@@ -43,8 +43,8 @@ public class ProjectsController : BaseController
         return Ok( await service.Add( project ) );
     }
 
-    [HttpPatch("{id}")]
-    public async Task<ActionResult<Project>> Update( int id, [FromBody]ProjectDto model )
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Project>> Update( Guid id, [FromBody]ProjectDto model )
     {
         var entity = await service.Find( id );
         if ( entity == null )

@@ -1,9 +1,5 @@
-﻿@inject ILogger<ProjectModel> Logger
-@inject ProjectService ProjectService
-@inject NavigationManager NavigationManager
-@* @rendermode InteractiveServer *@
-
-<EditForm Model="Model" OnValidSubmit="OnSubmit" FormName="ProjectForm">
+﻿
+<EditForm Model="Model" OnValidSubmit="OnValidSubmit" FormName="ProjectForm">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
     <div class="form-group mb-2">
@@ -19,14 +15,16 @@
     [Parameter]
     public ProjectModel? Model { get; set; }
 
+    [Parameter]
+    public EventCallback<ProjectModel> OnSubmit { get; set; }
+
     protected override void OnInitialized()
     {
         Model ??= new();
     }
 
-    private async Task OnSubmit()
+    private async Task OnValidSubmit()
     {
-        await ProjectService.PostAsync( Model! );
-        NavigationManager.NavigateTo( "/projects" );
+        await OnSubmit.InvokeAsync( Model! );
     }
 }

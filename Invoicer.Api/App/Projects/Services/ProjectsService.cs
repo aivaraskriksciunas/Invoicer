@@ -6,7 +6,7 @@ using Invoicer.Api.Services;
 
 namespace Invoicer.Api.App.Projects.Services;
 
-public class ProjectsService : BaseEntityService<Project, int>
+public class ProjectsService : BaseEntityService<Project, Guid>
 {
     public ProjectsService( InvoicerContext context ) : base( context ) {}
 

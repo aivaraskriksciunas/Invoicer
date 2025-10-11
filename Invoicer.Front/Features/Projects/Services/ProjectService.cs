@@ -15,7 +15,12 @@ public class ProjectService (HttpClient httpClient)
         await httpClient.PostAsJsonAsync( "/Projects", model );
     }
 
-    public async Task<ProjectModel?> GetAsync( int id )
+    public async Task PutAsync( ProjectModel model )
+    {
+        await httpClient.PutAsJsonAsync( $"/Projects/{model.Id}", model );
+    }
+
+    public async Task<ProjectModel?> GetAsync( Guid id )
     {
         return await httpClient.GetFromJsonAsync<ProjectModel>( $"/Projects/{id}" );
     }
